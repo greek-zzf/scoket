@@ -5,40 +5,44 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class Start {
-	
+
 	JFrame f;
 	JButton start,end;
 	JPanel panel;
 	public void init() {
-		f = new JFrame("Éè±¸");
-		start = new JButton("Æô¶¯Éè±¸");
-		end = new JButton("¹Ø±ÕÉè±¸");
+		f = new JFrame("è®¾å¤‡");
+
+		start = new JButton("å¼€æœº");
+		start.setBackground(Color.WHITE);
+
+		end = new JButton("å…³æœº");
+		end.setBackground(Color.WHITE);
+
 		panel  = new JPanel();
 		panel.setLayout(new FlowLayout(1,10,30));
-//		panel.setBackground(Color.LIGHT_GRAY);
 		start.setPreferredSize(new Dimension(150,50));
-//		start.setBorder(new EmptyBorder(15,15,15,15));
 		end.setPreferredSize(new Dimension(150,50));
 		panel.add(start);
 		panel.add(end);
-		f.setSize(200, 230);
+		panel.setBackground(Color.BLACK);
+		f.setSize(400, 150);
 		f.add(panel);
 		f.setVisible(true);
 		f.setResizable(false);
 		f.setLocation(300, 150);
 		f.setDefaultCloseOperation(0);
-		
+
 		ActionListener btnListener = e->{
 			try {
-				if(e.getActionCommand()=="Æô¶¯Éè±¸") {
-				//	start.setEnabled(false);
+				if(e.getActionCommand()=="å¼€æœº") {
+					//	start.setEnabled(false);
 					new Client();
 					start.setEnabled(false);
 				}else {
 					System.exit(0);
 				}
 			}catch(Exception e1) {
-				
+
 			}
 		};
 		start.addActionListener(btnListener);

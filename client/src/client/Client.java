@@ -15,7 +15,5 @@ public class Client {
 		}
 	}
 	public static void main(String[] args) throws Exception {
-//		Socket s = new Socket("127.0.0.1",29999);
-//		new Thread(new Send(s)).start();
 	}
 }

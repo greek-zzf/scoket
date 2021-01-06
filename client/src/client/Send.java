@@ -1,17 +1,16 @@
 package client;
 
+import tool.Message;
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-import tool.Message;
-
 public class Send implements Runnable {
-	
+
 	private Socket s;
 	private ObjectOutputStream oos;
 	private String no;
@@ -29,38 +28,40 @@ public class Send implements Runnable {
 	public void run() {
 		try {
 			oos = new ObjectOutputStream(s.getOutputStream());
-			//³õÊ¼»¯Éè±¸±àºÅ
+			//åˆå§‹åŒ–è®¾å¤‡ç¼–å·
 			int i;
 			rand = new Random();
 			no = "A" +rand.nextInt(100);
 			while(true) {
-				
+
 				i = rand.nextInt(200);
 				if(i<65) {
-					state = "ÍøÂçÁ¼ºÃ";
+					state = "ç½‘ç»œè‰¯å¥½";
 				}else if(i<135) {
-					state = "ÍøÂçÓµ¼·";
+					state = "ç½‘ç»œæ‹¥æŒ¤";
 				}else {
-					state = "ÍøÂç×èÈû";
+					state = "ç½‘ç»œé˜»å¡";
 				}
 				delay = i+"ms";
 				CPU = rand.nextInt(90)+"%";
-				time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());   //ÒªĞŞ¸ÄµÄ´úÂë
+				time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());   //è¦ä¿®æ”¹çš„ä»£ç 
 				Message content = new Message(no, time,state,delay,CPU);
 				oos.writeObject(content);
-				//Éè±¸10s ·¢ËÍÒ»´ÎÊı¾İ¸ø·şÎñÆ÷
+				//è®¾å¤‡10s å‘é€ä¸€æ¬¡æ•°æ®ç»™æœåŠ¡å™¨
 				Thread.sleep(10000);
-			
+
 			}
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
-			System.out.println("Óë·şÎñÆ÷ÒÑ¾­¶Ï¿ª");
+			System.out.println("ä¸æœåŠ¡å™¨å·²ç»æ–­å¼€");
 		}finally {
 			try {
-				if (oos != null)
+				if (oos != null) {
 					oos.close();
-				if (s != null)
+				}
+				if (s != null) {
 					s.close();
+				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

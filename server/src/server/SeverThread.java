@@ -1,9 +1,9 @@
 package server;
 
+import tool.Message;
+
 import java.io.ObjectInputStream;
 import java.net.Socket;
-
-import tool.Message;
 
 public class SeverThread extends Thread {
 	private Socket s = null;
@@ -12,26 +12,29 @@ public class SeverThread extends Thread {
 		this.s = s;
 	}
 
+	@Override
 	public void run() {
 		try {
 			Thread.sleep(2000);
-			ois = new ObjectInputStream(s.getInputStream());		
+			ois = new ObjectInputStream(s.getInputStream());
 			while(true) {
 				Message ms=(Message)ois.readObject();
-				//ÔÚÊı¾İ¿âÖĞ²åÈë¼à¿ØµÄ»úÆ÷·¢À´µÄÏûÏ¢
+				//åœ¨æ•°æ®åº“ä¸­æ’å…¥ç›‘æ§çš„æœºå™¨å‘æ¥çš„æ¶ˆæ¯
 				new DataBase().insertStatement(ms.getNo(), ms.getCPU(),
 						ms.getDelay(),ms.getState(),ms.getTime());
 			}
 		}catch(Exception e) {
-			
+
 			e.printStackTrace();
-			System.out.println("Óë¿Í»§¶ËÁ¬½ÓÒÑ¶Ï¿ª");
+			System.out.println("ä¸å®¢æˆ·ç«¯è¿æ¥å·²æ–­å¼€");
 		}finally {
 			try {
-				if(ois!=null)
+				if(ois!=null) {
 					ois.close();
-				if(s!=null)
-					s.close();				
+				}
+				if(s!=null) {
+					s.close();
+				}
 			}catch(Exception e1) {
 				e1.printStackTrace();
 			}

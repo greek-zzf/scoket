@@ -12,9 +12,9 @@ public class DataBase {
 	
 	public void init() throws ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		url = "jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC";
+		url = "jdbc:mysql://localhost:3306/test?serverTimeZone=GMT%2B8";
 		user = "root";
-		password = "........";
+		password = "123456";
 		sql = "insert into message values(?,?,?,?,?)";
 	}
 	

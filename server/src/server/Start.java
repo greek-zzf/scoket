@@ -1,47 +1,48 @@
 package server;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 public class Start {
-	
+
 	JFrame f;
 	JButton start,end;
 	JPanel panel;
 	public void init() {
-		f = new JFrame("·şÎñÆ÷");
-		start = new JButton("Æô¶¯·şÎñÆ÷");
-		end = new JButton("¹Ø±Õ·şÎñÆ÷");
+		f = new JFrame("æœåŠ¡å™¨");
+
+		start = new JButton("å¯åŠ¨");
+		start.setBackground(Color.WHITE);
+
+		end = new JButton("å…³é—­");
+		end.setBackground(Color.WHITE);
+
 		panel  = new JPanel();
 		panel.setLayout(new FlowLayout(1,10,30));
-//		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBackground(Color.BLACK);
 		start.setPreferredSize(new Dimension(150,50));
 //		start.setBorder(new EmptyBorder(15,15,15,15));
 		end.setPreferredSize(new Dimension(150,50));
 		panel.add(start);
 		panel.add(end);
-		f.setSize(200, 230);
+		f.setSize(400, 150);
 		f.add(panel);
 		f.setVisible(true);
 		f.setResizable(false);
 		f.setLocation(300, 150);
 		f.setDefaultCloseOperation(0);
-		
+
 		ActionListener btnListener = e->{
 			try {
-				if(e.getActionCommand()=="Æô¶¯·şÎñÆ÷") {
+				if(e.getActionCommand()=="å¯åŠ¨") {
 					start.setEnabled(false);
 					new Server();
 				}else {
 					System.exit(0);
 				}
 			}catch(Exception e1) {
-				
+
 			}
 		};
 		start.addActionListener(btnListener);
